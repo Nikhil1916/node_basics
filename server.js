@@ -1,9 +1,15 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 const server = http.createServer((req, res) => {
   console.log("Server called");
   res.setHeader('Content-Type', 'text/html');
   console.log(req.url);
+  const greet = _.once(() => {
+    console.log("checking lodash once method");
+  });
+  greet();
+  greet();
   let path = "./views";
   switch (req.url) {
     case '/':
@@ -34,5 +40,5 @@ const server = http.createServer((req, res) => {
   })
 })
 server.listen(3000, 'localhost', () => {
-  console.log("Server listen");
+  console.log("Server listen start");
 })
