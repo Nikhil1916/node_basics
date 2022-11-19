@@ -1,5 +1,5 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
 app.get('/', function (req, res) {
   res.send('Hello World 123')
@@ -12,11 +12,12 @@ app.get('/about', function (req, res) {
 
 //redirect
 app.get('/aboutus', (req, res) => {
-  res.redirect('./about');
+  res.redirect('/about');
 })
 
 //middleware
 app.use((req, res) => {
+  // let ans = res.status(404); as res ,status return res only so we can chanin ahead
   res.status(404).sendFile("./views/404.html", { root: __dirname }) //middleware
 })
 
